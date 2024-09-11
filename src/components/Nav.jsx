@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { Link } from 'react-router-dom'
 
 import "../styles/Nav.css";
@@ -7,12 +8,13 @@ import userIcon from "../assets/icons/usersWhite.png";
 import contactIcon from "../assets/icons/contactWhite.png";
 import closeIcon from "../assets/icons/closeWhite.png";
 
-import { useDropdownContext } from '../context/DropdownContext.jsx';
+import { dropdownContext } from '../context/DropdownContext.jsx';
 
 export default props => {
     const asideOrDropdown = props.asideOrDropdown;
-    const dropdownState = useDropdownContext().dropdownState;
-    const setDropdownState = useDropdownContext().setDropdownState;
+    const useDropdownContext = useContext(dropdownContext);
+    const dropdownState = useDropdownContext.dropdownState;
+    const setDropdownState = useDropdownContext.setDropdownState;
 
     const closeDropdown = () => {
         setDropdownState("closed");

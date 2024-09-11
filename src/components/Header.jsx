@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 
 import "../styles/Header.css";
 import homeIcon from "../assets/icons/home.png";
@@ -6,7 +6,7 @@ import usersIcon from "../assets/icons/users.png";
 import contactIcon from "../assets/icons/contact.png";
 import dropdownIcon from "../assets/icons/dropdown.png";
 
-import { useDropdownContext } from '../context/DropdownContext.jsx';
+import { dropdownContext } from '../context/DropdownContext.jsx';
 
 const iconMap = {
     home: homeIcon,
@@ -17,7 +17,9 @@ const iconMap = {
 export default props => {
     const selectedIcon = iconMap[props.icon] || '';
     const dropdownIconRef = useRef(null);
-    const setDropdownState = useDropdownContext().setDropdownState;
+
+    const useDropdownContext = useContext(dropdownContext);
+    const setDropdownState = useDropdownContext.setDropdownState;
 
     const dropdownClick = () => {
         const dropdownIcon = dropdownIconRef.current;
